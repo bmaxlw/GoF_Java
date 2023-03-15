@@ -3,8 +3,22 @@ public class Main {
         ParentFactory parentFactory = new ParentFactory();
         ParentFactoryInterface carFactory = parentFactory.produce("CarFactory");
         ParentFactoryInterface tankFactory = parentFactory.produce("TankFactory");
-        carFactory.identifyFactoryType();
-        tankFactory.identifyFactoryType();
+        CarFactory carFactory2 = new CarFactory();
+        if (carFactory2.getClass().equals(carFactory.getClass())){
+            System.out.println(true);
+            CarFactoryInterface audi = carFactory2.produce("Audi");
+            CarFactoryInterface bmw = carFactory2.produce("BMW");
+            audi.identifyCarMake();
+            bmw.identifyCarMake();
+
+            CarFactoryInterface audi2 = ((CarFactory) carFactory).produce("Audi");
+            CarFactoryInterface bmw2 = ((CarFactory) carFactory).produce("BMW");
+            audi2.identifyCarMake();
+            bmw2.identifyCarMake();
+        }
+        else {
+            System.out.println(false);
+        }
     }
 }
 
